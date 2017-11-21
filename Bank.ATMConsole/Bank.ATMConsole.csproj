@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{96BBAE80-8095-4BA1-9F28-0B606E929F50}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bank.Services</RootNamespace>
-    <AssemblyName>Bank.Services</AssemblyName>
+    <ProjectGuid>{59CE0F0B-E441-4877-87D9-CBF104767019}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Bank.ATMConsole</RootNamespace>
+    <AssemblyName>Bank.ATMConsole</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -47,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerService.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bank.Services\Bank.Services.csproj">
+      <Project>{96bbae80-8095-4ba1-9f28-0b606e929f50}</Project>
+      <Name>Bank.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bank.Models\Bank.Models.csproj">
       <Project>{a32c8df6-5203-4623-ba1f-f04c400ca23e}</Project>
       <Name>Bank.Models</Name>
