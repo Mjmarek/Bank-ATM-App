@@ -19,14 +19,14 @@ namespace Bank.ATMConsole
             Console.WriteLine("Please enter your last name.");
             string inputLast = Console.ReadLine();
 
-            Random id = new Random();
-            
+            Random rnd = new Random();
+            int id = rnd.Next(1, 101);
 
             newCustomer.CreateCustomer(id, inputFirst, inputLast);
 
             //newCustomer.CreateCustomer("Monica", "Marek");            
             //CustomerService.CreateCustomer(NameFromConsole);
-        }
+        }        
 
         //public ActionResult Index()
         //{
@@ -58,3 +58,5 @@ namespace Bank.ATMConsole
         
     }
 }
+
+//ASCII art found at: chris.com/ascii/index.php?art=objects/money
