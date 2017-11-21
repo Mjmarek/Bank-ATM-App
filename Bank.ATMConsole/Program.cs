@@ -58,5 +58,3 @@ namespace Bank.ATMConsole
         
     }
 }
-
-//ASCII art found at: chris.com/ascii/index.php?art=objects/money
