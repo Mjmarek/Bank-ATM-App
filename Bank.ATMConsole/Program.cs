@@ -28,13 +28,38 @@ namespace Bank.ATMConsole
 
             var accountService2 = new AccountService();
             var accountBalance = accountService2.GetAccountBalance(int.Parse(inputAccount));
+            Console.Clear();
 
-            Console.WriteLine($"You currently have ${accountBalance} in your {accountType} Account.");
+            Console.WriteLine($"You currently have ${accountBalance} in your {accountType} Account.\n" +
+                "What type of transaction would you like to complete?\n" +
+                "1: Deposit\n" +
+                "2: Withdrawal");
+
+
+
+            //take input and use it to determine case for switch
+
+            switch ()
+            {
+                case Deposit:
+                    deposit how much?
+                    deposit amount + balance = final balance
+                    display final balance;
+                    break;
+
+                case Withdrawal:
+                    withdraw how much?
+                    balance - withdraw amount = final balance
+                    display final balance;
+                    break;
+
+                default:
+                    Console.WriteLine("Thank you for visiting your bank. Have a nice day.");
+                    break;
+            }
             Console.ReadLine();
         }
-        
-        
-        
+                
         //static void Main(string[] args)
         //{
         //    var newCustomer = new CustomerService();
