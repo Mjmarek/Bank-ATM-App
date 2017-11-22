@@ -21,13 +21,25 @@ namespace Bank.ATMConsole
             
             Console.WriteLine($"Thank you, {firstName}.\n" +
                 "Please enter the PIN associated with this account.");
-            var inputPin = Console.ReadLine();
+                       
+            bool verifyPin = false;
+            do
+            {
+                var inputPin = Console.ReadLine();
+                var authService1 = new AuthService();
 
-            var authService1 = new AuthService();
-            authService1.VerifyCustomer(int.Parse(inputAccount), int.Parse(inputPin));
-            //make sure account is verified before continuing
-            //while unverified, keep looping for correct pin
+                if (authService1.VerifyCustomer(int.Parse(inputAccount), int.Parse(inputPin)))
+                {
+                    verifyPin = true;
+                }
 
+                else
+                {
+                    Console.WriteLine("PIN not verified. Please try again.");
+                }
+            }
+            while (verifyPin == false);
+                        
             var accountService1 = new AccountService();
             var accountType = accountService1.GetAccountType(int.Parse(inputAccount));
 

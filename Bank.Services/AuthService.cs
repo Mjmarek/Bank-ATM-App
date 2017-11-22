@@ -19,14 +19,10 @@ namespace Bank.Services
             
             foreach (var acc in query)
             {
-                Console.WriteLine("Hello, user!");
                 return true;
             }
 
-            Console.WriteLine("PIN not verified. Please try again.");
-            Console.ReadLine();
-            return false;
-            //return to "please enter your pin"
+            return false;            
         }
     }
 }
