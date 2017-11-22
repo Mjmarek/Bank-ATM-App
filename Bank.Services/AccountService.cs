@@ -28,5 +28,18 @@ namespace Bank.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public string GetAccountName(int accountNum)
+        {
+            using (var ctx = new ATMEntities())
+            {
+                var innerJoinQuery =
+                    from a in ctx.Account
+                    join c in ctx.Customer on a.CustomerID equals c.CustomerID
+                    where a.AccountNumber == accountNum
+                    select c.FirstName;
+                return innerJoinQuery.Single();
+            }
+        }     
     }
 }
