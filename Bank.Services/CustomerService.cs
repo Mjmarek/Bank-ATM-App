@@ -12,7 +12,7 @@ namespace Bank.Services
         public bool CreateCustomer(int id, string firstName, string lastName)
         {
             var entity =
-                new Customers()
+                new Customer()
                 {
                     CustomerID = id,
                     FirstName = firstName,
@@ -20,7 +20,7 @@ namespace Bank.Services
                 };
             using (var ctx = new ATMEntities())
             {
-                ctx.Customers.Add(entity);
+                ctx.Customer.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }

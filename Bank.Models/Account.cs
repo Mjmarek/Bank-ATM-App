@@ -12,7 +12,7 @@ namespace Bank.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Accounts
+    public partial class Account
     {
         public int AccountID { get; set; }
         public int AccountNumber { get; set; }
@@ -21,6 +21,6 @@ namespace Bank.Models
         public int PIN { get; set; }
         public int CustomerID { get; set; }
     
-        public virtual Customers Customers { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

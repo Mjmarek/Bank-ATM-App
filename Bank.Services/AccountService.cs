@@ -13,7 +13,7 @@ namespace Bank.Services
             string accountType, decimal balance, int pin, int id)
         {
             var entity =
-                new Accounts()
+                new Account()
                 {
                     AccountID = accountId,
                     AccountNumber = accountNum,
@@ -24,7 +24,7 @@ namespace Bank.Services
                 };
             using (var ctx = new ATMEntities())
             {
-                ctx.Customers.Add(entity);
+                ctx.Account.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }

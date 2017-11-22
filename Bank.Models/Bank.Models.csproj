@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accounts.cs">
+    <Compile Include="Account.cs">
       <DependentUpon>BankModels.tt</DependentUpon>
     </Compile>
     <Compile Include="BankModels.Context.cs">
@@ -67,7 +67,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BankModels.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Customers.cs">
+    <Compile Include="Customer.cs">
       <DependentUpon>BankModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
