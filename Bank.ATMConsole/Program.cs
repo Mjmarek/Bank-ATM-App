@@ -21,6 +21,15 @@ namespace Bank.ATMConsole
             
             Console.WriteLine($"Thank you, {firstName}.\n" +
                 "Please enter the PIN associated with this account.");
+            var inputPin = Console.ReadLine();
+
+            var accountService1 = new AccountService();
+            var accountType = accountService1.GetAccountType(int.Parse(inputAccount));
+
+            var accountService2 = new AccountService();
+            var accountBalance = accountService2.GetAccountBalance(int.Parse(inputAccount));
+
+            Console.WriteLine($"You currently have ${accountBalance} in your {accountType} Account.");
             Console.ReadLine();
         }
         

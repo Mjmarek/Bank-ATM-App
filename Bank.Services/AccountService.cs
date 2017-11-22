@@ -40,6 +40,30 @@ namespace Bank.Services
                     select c.FirstName;
                 return innerJoinQuery.Single();
             }
-        }     
+        }
+
+        public string GetAccountType(int accountNum)
+        {
+            using (var ctx = new ATMEntities())
+            {
+                var query =
+                    from a in ctx.Account
+                    where a.AccountNumber == accountNum
+                    select a.AccountType;
+                return query.Single();
+            }
+        }
+
+        public decimal GetAccountBalance(int accountNum)
+        {
+            using (var ctx = new ATMEntities())
+            {
+                var query1 =
+                    from a in ctx.Account
+                    where a.AccountNumber == accountNum
+                    select a.Balance;
+                return query1.Single();
+            }
+        }
     }
 }
