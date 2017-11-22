@@ -23,6 +23,11 @@ namespace Bank.ATMConsole
                 "Please enter the PIN associated with this account.");
             var inputPin = Console.ReadLine();
 
+            var authService1 = new AuthService();
+            authService1.VerifyCustomer(int.Parse(inputAccount), int.Parse(inputPin));
+            //make sure account is verified before continuing
+            //while unverified, keep looping for correct pin
+
             var accountService1 = new AccountService();
             var accountType = accountService1.GetAccountType(int.Parse(inputAccount));
 
@@ -35,29 +40,31 @@ namespace Bank.ATMConsole
                 "1: Deposit\n" +
                 "2: Withdrawal");
 
+            Console.ReadLine();
+
 
 
             //take input and use it to determine case for switch
 
-            switch ()
-            {
-                case Deposit:
-                    deposit how much?
-                    deposit amount + balance = final balance
-                    display final balance;
-                    break;
+            //switch ()
+            //{
+            //    case Deposit:
+            //        deposit how much?
+            //        deposit amount + balance = final balance
+            //        display final balance;
+            //        break;
 
-                case Withdrawal:
-                    withdraw how much?
-                    balance - withdraw amount = final balance
-                    display final balance;
-                    break;
+            //    case Withdrawal:
+            //        withdraw how much?
+            //        balance - withdraw amount = final balance
+            //        display final balance;
+            //        break;
 
-                default:
-                    Console.WriteLine("Thank you for visiting your bank. Have a nice day.");
-                    break;
-            }
-            Console.ReadLine();
+            //    default:
+            //        Console.WriteLine("Thank you for visiting your bank. Have a nice day.");
+            //        break;
+            //}
+            //Console.ReadLine();
         }
                 
         //static void Main(string[] args)
