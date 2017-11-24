@@ -33,12 +33,12 @@ namespace Bank.Services
         {
             using (var ctx = new ATMEntities())
             {
-                var innerJoinQuery =
+                var query =
                     from a in ctx.Account
                     join c in ctx.Customer on a.CustomerID equals c.CustomerID
                     where a.AccountNumber == accountNum
                     select c.FirstName;
-                return innerJoinQuery.Single();
+                return query.Single();
             }
         }
 
@@ -58,11 +58,11 @@ namespace Bank.Services
         {
             using (var ctx = new ATMEntities())
             {
-                var query1 =
+                var query =
                     from a in ctx.Account
                     where a.AccountNumber == accountNum
                     select a.Balance;
-                return query1.Single();
+                return query.Single();
             }
         }
     }

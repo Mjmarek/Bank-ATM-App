@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Bank.ATMConsole
 {
@@ -26,9 +25,9 @@ namespace Bank.ATMConsole
             do
             {
                 var inputPin = Console.ReadLine();
-                var authService1 = new AuthService();
+                var authService = new AuthService();
 
-                if (authService1.VerifyCustomer(int.Parse(inputAccount), int.Parse(inputPin)))
+                if (authService.VerifyCustomer(int.Parse(inputAccount), int.Parse(inputPin)))
                 {
                     verifyPin = true;
                 }
@@ -40,58 +39,62 @@ namespace Bank.ATMConsole
             }
             while (verifyPin == false);
                         
-            var accountService1 = new AccountService();
-            var accountType = accountService1.GetAccountType(int.Parse(inputAccount));
+            var accountType = accountService.GetAccountType(int.Parse(inputAccount));
+            Console.WriteLine($"You have accessed your {accountType} Account.");
 
-            var accountService2 = new AccountService();
-            var accountBalance = accountService2.GetAccountBalance(int.Parse(inputAccount));
-            Console.Clear();
+            bool customerIsBanking = true;
+            while (customerIsBanking)
+            {
+                Console.WriteLine("What type of transaction would you like to complete?\n" +
+                    "1: Deposit\n" +
+                    "2: Withdrawal\n" +
+                    "3: Check Balance");
+                var customerInput = int.Parse(Console.ReadLine());
+                var accountOptions = (CustomerAccountOptions)customerInput;
 
-            Console.WriteLine($"You currently have ${accountBalance} in your {accountType} Account.\n" +
-                "What type of transaction would you like to complete?\n" +
-                "1: Deposit\n" +
-                "2: Withdrawal");
+                switch (accountOptions)
+                {
+                    case CustomerAccountOptions.Deposit:
+                        Console.WriteLine("How much would you like to deposit into your account?");
+                        var accountAdd = decimal.Parse(Console.ReadLine());
+                        var accountAddBalance = accountService.GetAccountBalance(int.Parse(inputAccount));
+                        Console.WriteLine($"You have {accountAddBalance} in your {accountType} Account.\n" +
+                            "Would you like to complete another transaction?");
+                        break;
 
-            Console.ReadLine();
+                    case CustomerAccountOptions.Withdrawal:
+                        Console.WriteLine("How much would you like to withdraw from your account?");
+                        var accountSubtract = decimal.Parse(Console.ReadLine());
+                        var accountSubtractBalance = accountService.GetAccountBalance(int.Parse(inputAccount));
+                        Console.WriteLine($"You have {accountSubtractBalance} in your {accountType} Account.\n" +
+                            "Would you like to complete another transaction?");
+                        break;
 
+                    case CustomerAccountOptions.CheckBalance:
+                        var accountBalance = accountService.GetAccountBalance(int.Parse(inputAccount));
+                        Console.WriteLine($"You have {accountBalance} in your {accountType} Account.\n" +
+                            "Would you like to complete another transaction?\n" +
+                            "1: Yes\n" +
+                            "2: No");
+                        var continueTransaction = int.Parse(Console.ReadLine());
+                            if (continueTransaction == 1)
+                            {
+                                customerIsBanking = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Thank you, {firstName}. Have a nice day.");
+                                customerIsBanking = false;
+                            };
+                        break;
 
+                    default:
+                        Console.WriteLine("Please select from the options provided.");
+                        break;
 
-            //take input and use it to determine case for switch
-
-            //switch ()
-            //{
-            //    case Deposit:
-            //        deposit how much?
-            //        deposit amount + balance = final balance
-            //        display final balance;
-            //        break;
-
-            //    case Withdrawal:
-            //        withdraw how much?
-            //        balance - withdraw amount = final balance
-            //        display final balance;
-            //        break;
-
-            //    default:
-            //        Console.WriteLine("Thank you for visiting your bank. Have a nice day.");
-            //        break;
-            //}
-            //Console.ReadLine();
+                    
+                }
+            }
         }
-                
-        //static void Main(string[] args)
-        //{
-        //    var newCustomer = new CustomerService();
-        //    Console.WriteLine("Welcome to your bank.\n" +
-        //        "Please enter your first name.");
-        //    var inputFirst = Console.ReadLine();
-        //    Console.WriteLine("Please enter your last name.");
-        //    var inputLast = Console.ReadLine();
-
-        //    Random rnd = new Random();
-        //    int id = rnd.Next(1, 101);
-
-        //    newCustomer.CreateCustomer(id, inputFirst, inputLast);
-        //}              
     }
 }

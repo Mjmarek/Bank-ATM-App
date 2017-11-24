@@ -9,20 +9,19 @@ namespace Bank.Services
 {
     public class AuthService
     {
-        private ATMEntities db = new ATMEntities();
         public bool VerifyCustomer(int accountNum, int pinNum)
         {
-            var query =
-                from a in db.Account
-                where a.AccountNumber == accountNum && a.PIN == pinNum
-                select a;
-            
-            foreach (var acc in query)
+            using (var ctx = new ATMEntities())
             {
-                return true;
-            }
+                var query =
+                from a in ctx.Account
+                where a.AccountNumber == accountNum
+                select a;
 
-            return false;            
+                var account = query.Single();
+
+                return pinNum == account.PIN;
+            }
         }
     }
 }
