@@ -65,5 +65,39 @@ namespace Bank.Services
                 return query.Single();
             }
         }
+
+        public decimal AddAccountBalance(int accountNum, decimal accountAdd)
+        {
+            using (var ctx = new ATMEntities())
+            {
+                var query =
+                    from a in ctx.Account
+                    where a.AccountNumber == accountNum
+                    select a;
+                var account = query.Single();
+
+                account.Balance = (account.Balance + accountAdd);
+
+                ctx.SaveChanges();
+                return account.Balance;
+            }
+        }
+
+        public decimal SubtractAccountBalance(int accountNum, decimal accountSubtract)
+        {
+            using (var ctx = new ATMEntities())
+            {
+                var query =
+                    from a in ctx.Account
+                    where a.AccountNumber == accountNum
+                    select a;
+                var account = query.Single();
+
+                account.Balance = (account.Balance - accountSubtract);
+
+                ctx.SaveChanges();
+                return account.Balance;
+            }
+        }
     }
 }

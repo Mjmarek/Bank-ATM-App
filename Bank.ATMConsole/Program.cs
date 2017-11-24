@@ -59,17 +59,17 @@ namespace Bank.ATMConsole
                     case CustomerAccountOptions.Deposit:
                         Console.WriteLine("How much would you like to deposit into your account?");
                         var accountAdd = decimal.Parse(Console.ReadLine());
-                        var accountAddBalance = accountService.GetAccountBalance(int.Parse(inputAccount));
-                        Console.WriteLine($"You have {accountAddBalance} in your {accountType} Account.\n" +
-                            "Would you like to complete another transaction?");
+                        var accountAddBalance = accountService.AddAccountBalance(int.Parse(inputAccount), accountAdd);
+                        Console.WriteLine($"You have {accountAddBalance} in your {accountType} Account.");
+                        if (!AnotherTransaction()) customerIsBanking = false;
                         break;
 
                     case CustomerAccountOptions.Withdrawal:
                         Console.WriteLine("How much would you like to withdraw from your account?");
                         var accountSubtract = decimal.Parse(Console.ReadLine());
-                        var accountSubtractBalance = accountService.GetAccountBalance(int.Parse(inputAccount));
-                        Console.WriteLine($"You have {accountSubtractBalance} in your {accountType} Account.\n" +
-                            "Would you like to complete another transaction?");
+                        var accountSubtractBalance = accountService.SubtractAccountBalance(int.Parse(inputAccount), accountSubtract);
+                        Console.WriteLine($"You have {accountSubtractBalance} in your {accountType} Account.");
+                        if (!AnotherTransaction()) customerIsBanking = false;
                         break;
 
                     case CustomerAccountOptions.CheckBalance:
