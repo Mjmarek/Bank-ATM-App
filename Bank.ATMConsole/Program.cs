@@ -9,6 +9,8 @@ namespace Bank.ATMConsole
 {
     public class Program
     {
+        public static string FirstName { get; set; }
+        
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to your bank.\n" +
@@ -16,9 +18,9 @@ namespace Bank.ATMConsole
             var inputAccount = Console.ReadLine();
 
             var accountService = new AccountService();
-            var firstName = accountService.GetAccountName(int.Parse(inputAccount));
+            FirstName = accountService.GetAccountName(int.Parse(inputAccount));
             
-            Console.WriteLine($"Thank you, {firstName}.\n" +
+            Console.WriteLine($"Thank you, {FirstName}.\n" +
                 "Please enter the PIN associated with this account.");
                        
             bool verifyPin = false;
@@ -72,29 +74,32 @@ namespace Bank.ATMConsole
 
                     case CustomerAccountOptions.CheckBalance:
                         var accountBalance = accountService.GetAccountBalance(int.Parse(inputAccount));
-                        Console.WriteLine($"You have {accountBalance} in your {accountType} Account.\n" +
-                            "Would you like to complete another transaction?\n" +
-                            "1: Yes\n" +
-                            "2: No");
-                        var continueTransaction = int.Parse(Console.ReadLine());
-                            if (continueTransaction == 1)
-                            {
-                                customerIsBanking = true;
-                            }
-                            else
-                            {
-                                Console.WriteLine($"Thank you, {firstName}. Have a nice day.");
-                                customerIsBanking = false;
-                            };
+                        Console.WriteLine($"You have {accountBalance} in your {accountType} Account.");
+                        if (!AnotherTransaction()) customerIsBanking = false;
                         break;
 
                     default:
                         Console.WriteLine("Please select from the options provided.");
                         break;
-
-                    
                 }
             }
+        }
+
+        private static bool AnotherTransaction()
+        {
+            Console.WriteLine("Would you like to complete another transaction?\n" +
+                           "1: Yes\n" +
+                           "2: No");
+            var continueTransaction = int.Parse(Console.ReadLine());
+            if (continueTransaction == 1)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine($"Thank you, {FirstName}. Have a nice day.");
+                return false;
+            };
         }
     }
 }
