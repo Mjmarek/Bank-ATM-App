@@ -10,7 +10,7 @@ namespace Bank.ATMConsole
     public class Program
     {
         public static string FirstName { get; set; }
-        
+
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to your bank.\n" +
